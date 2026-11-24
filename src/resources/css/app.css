@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        @apply scroll-smooth;
+    }
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+    }
+    body {
+        @apply bg-cream text-ink font-sans antialiased;
+    }
+}
+
+@layer components {
+    .btn {
+        @apply inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full text-sm font-semibold tracking-wide uppercase transition-all duration-300 shadow-sm hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:shadow-sm disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-wine-700 focus-visible:ring-offset-2;
+    }
+    .btn-primary {
+        @apply btn bg-wine-700 text-white hover:bg-wine-800;
+    }
+    .btn-outline {
+        @apply btn border border-ink text-ink hover:bg-ink hover:text-cream;
+    }
+    .btn-ghost {
+        @apply btn text-ink hover:text-wine-700 shadow-none hover:shadow-none hover:translate-y-0;
+    }
+    .input {
+        @apply w-full rounded-lg border border-neutral-300 bg-white px-4 py-3 text-sm text-ink placeholder-neutral-400 transition-colors focus:border-wine-700 focus:outline-none focus:ring-2 focus:ring-wine-700/30;
+    }
+    .label {
+        @apply mb-1.5 block text-xs font-semibold uppercase tracking-wider text-neutral-600;
+    }
+    .card {
+        @apply rounded-xl bg-white border border-neutral-200 shadow-sm;
+    }
+    .section-pad {
+        @apply px-4 sm:px-6 lg:px-10 xl:px-16;
+    }
+    .heading-display {
+        @apply font-display text-3xl sm:text-4xl lg:text-5xl leading-tight;
+    }
+    .eyebrow {
+        @apply text-xs font-semibold uppercase tracking-boutique text-wine-700;
+    }
+}
+
+/* Alpine cloak */
+[x-cloak] { display: none !important; }
+
+/* Marquee strip */
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee-track { animation: marquee 30s linear infinite; }
+@media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; }
+}
+
+/* Subtle reveal on scroll */
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.is-visible {
+    opacity: 1;
+    transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+}
